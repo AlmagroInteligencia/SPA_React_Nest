@@ -24,5 +24,8 @@ need to have some dependencies, which are listed in the file "package.json" (in 
 Nest runs on port 8000 and React runs on port 3000. Please make sure you do not
 have anything alse running on that ports, otherwise, this app will not work.
 
+This app connects to MongoDB with Mongoose. So, the first time you use this app,
+Mongoose will automatically generate a database and a collection for you (only
+if you have MongoDB installed and running, of course).
 
 Enjoy it !!!
