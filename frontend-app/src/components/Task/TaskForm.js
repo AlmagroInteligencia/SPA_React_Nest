@@ -4,7 +4,7 @@ import * as TaskServer from "./TaskServer";
 
 const TaskForm = () => {
     
-    const initialState = {id:0, name:"", body:""};
+    const initialState = {_id:"", name:"", body:""};
     
     const [task,setTask] = useState(initialState);
 
