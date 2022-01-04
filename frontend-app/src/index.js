@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
 import App from './App';
@@ -10,17 +11,22 @@ import TaskList from './components/Task/TaskList';
 import TaskForm from './components/Task/TaskForm';
 
 ReactDOM.render(
-  <div>
-      <Navbar/>
+    <BrowserRouter>
+        <Navbar/>
       <div className="container bg-black p-4">
-          <div>
+          <Routes>
+            <Route path="/" element={<div><TaskForm/><TaskList/></div>}/> 
+            <Route path="/edit:id" element={<div><TaskForm/><TaskList/></div>}/>
+          </Routes>
+         {/*} <Route path="/" component={TaskList}/>   */}
+{/*           <div>
               <TaskForm/>
           </div>
           <div>
               <TaskList/>
-          </div>
+          </div> */}
       </div>
-  </div>,    
+    </BrowserRouter>,      
   
   document.getElementById('root')
 );

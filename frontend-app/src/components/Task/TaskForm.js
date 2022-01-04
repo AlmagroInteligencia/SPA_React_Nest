@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import * as TaskServer from "./TaskServer";
 
 const TaskForm = () => {
+    
+    //const history = useHistory();
+    const params = useParams();
+    console.log(params);
     
     const initialState = {_id:"", name:"", body:""};
     
@@ -21,6 +26,7 @@ const TaskForm = () => {
             if (data.message === "Success") {
                 setTask(initialState);
             }
+            //history.push("/");
         } catch (error) {
             console.log(error);
         }
@@ -36,6 +42,12 @@ const TaskForm = () => {
             console.log(error);
         }
     };
+
+    useEffect(()=>{
+        if(params){
+            getTask(params);
+        } 
+    },[]);
     
     return (
         
