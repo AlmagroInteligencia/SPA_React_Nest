@@ -17,9 +17,10 @@ const TaskList=()=>{
         }
     };
 
-    useEffect(() => {
+    /*useEffect(() => {
         listTasks();
-    },);
+    },);*/
+    listTasks();
 
     return (
         <div className="row">

@@ -16,7 +16,7 @@ ReactDOM.render(
       <div className="container bg-black p-4">
           <Routes>
             <Route path="/" element={<div><TaskForm/><TaskList/></div>}/> 
-            <Route path="/edit:id" element={<div><TaskForm/><TaskList/></div>}/>
+            <Route path="/edit/:id" element={<div><TaskForm/><TaskList/></div>}/>
           </Routes>
          {/*} <Route path="/" component={TaskList}/>   */}
 {/*           <div>

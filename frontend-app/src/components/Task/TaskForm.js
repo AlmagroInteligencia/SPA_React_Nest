@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import * as TaskServer from "./TaskServer";
 
 const TaskForm = () => {
     
-    //const history = useHistory();
+    const navigate = useNavigate();
     const params = useParams();
     console.log(params);
     
@@ -21,12 +21,17 @@ const TaskForm = () => {
         e.preventDefault();
         try {
             let res;
-            res = await TaskServer.addTask(task);
-            const data = await res.json();
-            if (data.message === "Success") {
-                setTask(initialState);
+            if(!params.id){
+                res = await TaskServer.addTask(task);
+                const data = await res.json();
+                if (data.message === "Success") {   
+                    setTask(initialState);
+                }
+            } else {
+                await TaskServer.updateTask(params.id, task);
             }
-            //history.push("/");
+            navigate('/');
+            setTask(initialState);
         } catch (error) {
             console.log(error);
         }
@@ -44,8 +49,8 @@ const TaskForm = () => {
     };
 
     useEffect(()=>{
-        if(params){
-            getTask(params);
+        if(params.id){
+            getTask(params.id);
         } 
     },[]);
     
@@ -62,7 +67,7 @@ const TaskForm = () => {
                                 <textarea id="body-task" className="form-control" name="body" value={task.body} onChange={handleInputChange} placeholder="Task body" cols="60" rows="3"></textarea>
                             </div>
                             <div className="d-grid gap-2">
-                                <button onClick={handleSubmit} className="btn btn-dark text-center">Add Task</button>
+                                <button onClick={handleSubmit} className="btn btn-dark text-center">Save Task</button>
                             </div>
                         </form>
                     </div>

@@ -22,6 +22,20 @@ export const addTask = async (newTask) => {
     });
 };
 
+export const updateTask = async (taskId, updatedTask) => {
+    return await fetch(`${API_URL}${taskId}`,{
+        method:"PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "name": String(updatedTask.name).trim(),
+            "body": String(updatedTask.body).trim()
+        })
+        
+    });
+};
+
 export const deleteTask = async (taskId) => {
     return await fetch(`${API_URL}${taskId}`,{
         method:"DELETE"        
